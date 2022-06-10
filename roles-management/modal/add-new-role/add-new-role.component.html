@@ -1,0 +1,20 @@
+<xc-dialog-wrapper xc-form xc-i18n-context="acm.add-new-role">
+    <ng-container header><span xc-i18n>header</span></ng-container>
+
+    <section content>
+
+        <div class="items-row">
+            <xc-form-input label="label-role-name" [(value)]="role.roleName" xc-form-validator-required xc-i18n></xc-form-input>
+        </div>
+        <div class="items-row">
+            <xc-form-textarea xc-i18n label="label-documentation" [(value)]="role.description"></xc-form-textarea>
+        </div>
+
+
+    </section>
+
+    <ng-container footer>
+        <xc-button (click)="dismiss(null)" xc-i18n>button-cancel</xc-button>
+        <xc-button (click)="apply()" color="primary" [disabled]="invalid" xc-i18n>button-add</xc-button>
+    </ng-container>
+</xc-dialog-wrapper>

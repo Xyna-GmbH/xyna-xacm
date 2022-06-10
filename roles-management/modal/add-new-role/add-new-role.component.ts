@@ -1,0 +1,62 @@
+/*
+ * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+ * Copyright 2022 GIP SmartMercial GmbH, Germany
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *  http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+ */
+import { Component, Injector, ViewChild } from '@angular/core';
+
+import { I18nService } from '@zeta/i18n';
+import { XcDialogComponent, XcFormDirective } from '@zeta/xc';
+
+import { XoRole } from '../../../xo/xo-role.model';
+import { addNewRole_translations_de_DE } from './locale/add-new-role-translations.de-DE';
+import { addNewRole_translations_en_US } from './locale/add-new-role-translations.en-US';
+
+
+@Component({
+    templateUrl: './add-new-role.component.html',
+    styleUrls: ['./add-new-role.component.scss']
+})
+export class AddNewRoleComponent extends XcDialogComponent<XoRole, XoRole> {
+
+    @ViewChild(XcFormDirective, {static: false})
+    modalForm: XcFormDirective;
+
+    get invalid(): boolean {
+        return this.modalForm ? this.modalForm.invalid : false;
+    }
+
+    role: XoRole = new XoRole();
+
+    constructor(injector: Injector, private readonly i18nService: I18nService) {
+        super(injector);
+
+        this.i18nService.setTranslations(I18nService.DE_DE, addNewRole_translations_de_DE);
+        this.i18nService.setTranslations(I18nService.EN_US, addNewRole_translations_en_US);
+
+        this.role.domainName0 = 'XYNA';
+
+        if (this.injectedData) {
+            this.role.roleName = this.injectedData.roleName;
+            this.role.description = this.injectedData.description;
+            this.role.domainName0 = this.injectedData.domainName0;
+            this.role.rightList = this.injectedData.rightList.clone();
+        }
+    }
+
+    apply() {
+        this.dismiss(this.role);
+    }
+}
