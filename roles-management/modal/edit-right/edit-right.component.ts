@@ -20,7 +20,7 @@ import { ChangeDetectorRef, Component, Injector } from '@angular/core';
 import { I18nService } from '@zeta/i18n';
 import { XcDialogComponent, XcLocalTableDataSource, XcRichListItem, XcSelectionModel } from '@zeta/xc';
 
-import { Subject } from 'rxjs/';
+import { Subject } from 'rxjs';
 
 import { ACMSettingsService } from '../../../acm-settings.service';
 import { ParameterRichlistItemComponent, ParameterRichlistItemData } from '../../../rights-management/items/parameter-richlist-item/parameter-richlist-item.component';

@@ -18,7 +18,7 @@
 import { Injectable } from '@angular/core';
 import { ActivationStart, NavigationEnd, Router } from '@angular/router';
 
-import { BehaviorSubject, Observable, Subject } from 'rxjs/';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { filter } from 'rxjs/operators';
 
 

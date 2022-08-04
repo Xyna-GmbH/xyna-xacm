@@ -23,7 +23,7 @@ import { I18nService } from '@zeta/i18n';
 import { RouteComponent } from '@zeta/nav';
 import { XcDialogService, XcFormDirective, XDSIconName } from '@zeta/xc';
 
-import { Observable, of, Subject } from 'rxjs/';
+import { Observable, of, Subject } from 'rxjs';
 
 import { RTC, XACM_WF } from './acm-consts';
 import { ACMNavigationService } from './acm-navigation.service';

@@ -17,7 +17,7 @@
  */
 import { XcRemoteTableDataSource } from '@zeta/xc';
 
-import { Observable, Subject } from 'rxjs/';
+import { Observable, Subject } from 'rxjs';
 
 import { ACMTableObject } from './xo/acm-table-object.model';
 

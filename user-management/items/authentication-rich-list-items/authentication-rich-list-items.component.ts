@@ -19,7 +19,7 @@ import { Component, Injector } from '@angular/core';
 
 import { XcRichListItemComponent } from '@zeta/xc';
 
-import { Subject } from 'rxjs/';
+import { Subject } from 'rxjs';
 
 import { XoDomain } from '../../../xo/xo-domain.model';
 
