@@ -21,7 +21,7 @@ import { StartOrderOptionsBuilder, StartOrderResult } from '@zeta/api';
 import { I18nService } from '@zeta/i18n';
 import { XcDialogService, XcLocalTableDataSource, XDSIconName } from '@zeta/xc';
 
-import { of, throwError } from 'rxjs/';
+import { of, throwError } from 'rxjs';
 import { Observable } from 'rxjs/internal/Observable';
 import { catchError, filter, map } from 'rxjs/operators';
 

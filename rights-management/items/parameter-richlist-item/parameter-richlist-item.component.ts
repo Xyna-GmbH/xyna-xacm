@@ -21,7 +21,7 @@ import { AbstractControl, ValidatorFn } from '@angular/forms';
 import { I18nService } from '@zeta/i18n';
 import { XcAutocompleteDataWrapper, XcFormInputComponent, XcOptionItem, XcOptionItemString, XcRichListItemComponent } from '@zeta/xc';
 
-import { Observable, Subject, Subscription } from 'rxjs/';
+import { Observable, Subject, Subscription } from 'rxjs';
 
 import { RightParameterType, RightParameterValueError, XoRightParameter, XoRightParameterArray } from '../../../xo/xo-right-parameter.model';
 

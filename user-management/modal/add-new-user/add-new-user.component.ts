@@ -20,7 +20,7 @@ import { Component, Injector, ViewChild } from '@angular/core';
 import { I18nService } from '@zeta/i18n';
 import { XcAutocompleteDataWrapper, XcDialogComponent, XcFormDirective, XcOptionItem, XcOptionItemString, XcRichListItem } from '@zeta/xc';
 
-import { Observable, Subject, Subscription } from 'rxjs/';
+import { Observable, Subject, Subscription } from 'rxjs';
 
 import { XoCreateUserRequest } from '../../../xo/xo-create-user-request.model';
 import { XoDomainArray } from '../../../xo/xo-domain.model';

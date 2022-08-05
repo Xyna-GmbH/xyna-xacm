@@ -20,7 +20,7 @@ import { ChangeDetectorRef, Component, Injector, ViewChild } from '@angular/core
 import { I18nParam, I18nService } from '@zeta/i18n';
 import { XcDialogComponent, XcFormDirective, XcRichListItem } from '@zeta/xc';
 
-import { Subject } from 'rxjs/';
+import { Subject } from 'rxjs';
 
 import { RightParameterType, XoRightParameter, XoRightParameterArray } from '../../../xo/xo-right-parameter.model';
 import { XoRight } from '../../../xo/xo-right.model';

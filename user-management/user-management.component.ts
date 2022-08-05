@@ -22,7 +22,7 @@ import { StartOrderOptionsBuilder } from '@zeta/api';
 import { I18nService } from '@zeta/i18n';
 import { XcAutocompleteDataWrapper, XcDialogService, XcOptionItem, XcOptionItemString, XcRichListItem } from '@zeta/xc';
 
-import { Observable, of, Subject, Subscription } from 'rxjs/';
+import { Observable, of, Subject, Subscription } from 'rxjs';
 
 import { ACMApiService, extractError, RTC, XACM_WF } from '../acm-consts';
 import { ACMRouteComponent } from '../acm-route-component.class';
