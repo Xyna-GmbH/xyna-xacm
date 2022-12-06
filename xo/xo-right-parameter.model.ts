@@ -113,17 +113,20 @@ export class XoRightParameter extends XoObject {
     isDefinitionValid(def: string): RightParameterValueError {
 
         if (this.type === RightParameterType.OPTIONS) {
-            const match = /^(([a-zA-Z][a-zA-Z0-9._]+|[*]{1})([ ]*[,][ ]*){0,1})*$/.exec(def);
-
-            if (!match) {
+            /*
+            Input is considered valid if it is a non-empty, comma-separated list of valid options.
+            An option is valid if
+                - it is "*" or
+                - it starts with a letter (lower- or uppercase), followed by at least one letter / number / "." / "_".
+            Substrings between commas are trimmed. I.e. "  op1   ,   *   ,  abc " is valid.
+            */
+            const trimmedOptions = def.split(',')
+                .map(slice => slice.trim());
+            const regexp = /^([a-zA-Z][a-zA-Z0-9._]+|[*])$/;
+            if (trimmedOptions.some(option => !regexp.test(option))) {
                 return new RightParameterValueError('NOT COMMA SEPARATED LIST OF VALID OPTIONS');
             }
-
-            let arr = def.split(',');
-            arr = arr.filter(str => !!str);
-            arr = arr.map(str => str.trim());
-
-            if (arr.length === 0) {
+            if (trimmedOptions.length === 0) {
                 return new RightParameterValueError('AT LEAST 1 VALID OPTION REQUIRED');
             }
             return new RightParameterValueError();
