@@ -91,6 +91,14 @@ export const roles_translations_de_DE: I18nTranslation[] = [
         key: 'xmcp.xacm.roles.revoke',
         value: 'Entziehen'
     },
+    {
+        key: 'xmcp.xacm.roles.unknown-right-title',
+        value: 'Unbekanntes Recht'
+    },
+    {
+        key: 'xmcp.xacm.roles.unknown-right',
+        value: 'Das verwendete Recht "%right%" existiert nicht. Soll es angelegt werden, um diese Rolle bearbeiten zu können?'
+    },
 
     // TABLE COLUMNS
     {

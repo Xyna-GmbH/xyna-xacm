@@ -23,8 +23,9 @@ import { I18nService } from '@zeta/i18n';
 import { XcAutocompleteDataWrapper, XcDialogService, XcOptionItem, XcOptionItemString, XcRichListItem } from '@zeta/xc';
 
 import { Observable, of, Subject, Subscription } from 'rxjs';
+import { ACMApiService } from '../acm-api.service';
 
-import { ACMApiService, extractError, RTC, XACM_WF } from '../acm-consts';
+import { extractError, RTC, XACM_WF } from '../acm-consts';
 import { ACMRouteComponent } from '../acm-route-component.class';
 import { ACMSettingsService } from '../acm-settings.service';
 import { XoCreateUserRequest } from '../xo/xo-create-user-request.model';

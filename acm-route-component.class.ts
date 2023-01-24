@@ -18,12 +18,13 @@
 import { Component, Injector, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 
-import { ApiService, StartOrderOptionsBuilder } from '@zeta/api';
+import { StartOrderOptionsBuilder } from '@zeta/api';
 import { I18nService } from '@zeta/i18n';
 import { RouteComponent } from '@zeta/nav';
 import { XcDialogService, XcFormDirective, XDSIconName } from '@zeta/xc';
 
 import { Observable, of, Subject } from 'rxjs';
+import { ACMApiService } from './acm-api.service';
 
 import { RTC, XACM_WF } from './acm-consts';
 import { ACMNavigationService } from './acm-navigation.service';
@@ -33,7 +34,6 @@ import { acm_route_translations_de_DE } from './locale/acm-translations.de-DE';
 import { acm_route_translations_en_US } from './locale/acm-translations.en-US';
 import { ACMTableObject } from './xo/acm-table-object.model';
 import { XoDomainArray } from './xo/xo-domain.model';
-import { XoACMLocale } from './xo/xo-locale.model';
 
 
 @Component({
@@ -72,8 +72,6 @@ export abstract class ACMRouteComponent<T extends ACMTableObject> extends RouteC
 
     private readonly currentObjectChangeSubject = new Subject<T>();
 
-    private readonly currentXoLocale: XoACMLocale;
-
     get currentObjectChange() {
         return this.currentObjectChangeSubject.asObservable();
     }
@@ -86,13 +84,9 @@ export abstract class ACMRouteComponent<T extends ACMTableObject> extends RouteC
         return (this.i18nService.language === I18nService.EN_US);
     }
 
-    get xoLocale(): XoACMLocale {
-        return this.currentXoLocale;
-    }
-
     constructor(
         readonly injector: Injector,
-        protected readonly apiService: ApiService,
+        protected readonly apiService: ACMApiService,
         protected readonly i18nService: I18nService,
         protected readonly dialogService: XcDialogService,
         protected readonly settings: ACMSettingsService
@@ -103,8 +97,6 @@ export abstract class ACMRouteComponent<T extends ACMTableObject> extends RouteC
 
 
         this.router = injector.get(Router);
-        this.currentXoLocale = new XoACMLocale();
-        this.currentXoLocale.language = this.i18nService.language;
 
         this.route = injector.get(ActivatedRoute);
         this.acmNavigationService = injector.get(ACMNavigationService);

@@ -24,8 +24,9 @@ import { XcDialogService, XcLocalTableDataSource, XDSIconName } from '@zeta/xc';
 import { of, throwError } from 'rxjs';
 import { Observable } from 'rxjs/internal/Observable';
 import { catchError, filter, map } from 'rxjs/operators';
+import { ACMApiService } from '../acm-api.service';
 
-import { ACMApiService, extractError, getAllRights, RTC, XACM_WF } from '../acm-consts';
+import { extractError, getAllRights, RTC, XACM_WF } from '../acm-consts';
 import { ACMRouteComponent } from '../acm-route-component.class';
 import { ACMSettingsService } from '../acm-settings.service';
 import { XoRight, XoRightArray } from '../xo/xo-right.model';
@@ -187,7 +188,7 @@ export class RolesManagementComponent extends ACMRouteComponent<XoRoleTableEntry
     }
 
     updateRights() {
-        getAllRights(this.apiService, this.xoLocale).subscribe(
+        getAllRights(this.apiService, this.apiService.xoLocale).subscribe(
             (rights: XoRightArray) => {
                 if (rights) {
                     this.allRights = rights;
@@ -203,8 +204,28 @@ export class RolesManagementComponent extends ACMRouteComponent<XoRoleTableEntry
 
         if (roleName.roleName) {
             return this.apiService
-                .startOrder(RTC, XACM_WF.xmcp.xacm.rolesmanagement.GetRoleDetails, [roleName, this.xoLocale], XoRole, StartOrderOptionsBuilder.defaultOptionsWithErrorMessage).pipe(
-                    filter(result => result.errorMessage ? (this.dialogService.error(result.errorMessage, null, result.stackTrace.join('\r\n')), false) : true),
+                .startOrder(RTC, XACM_WF.xmcp.xacm.rolesmanagement.GetRoleDetails, [roleName, this.apiService.xoLocale], XoRole, StartOrderOptionsBuilder.defaultOptionsWithErrorMessage).pipe(
+                    filter(result => {
+                        if (result.errorMessage) {
+                            // if the error is due to a missing right ...
+                            const missingRight = /Right\s(.*)\sis\snot\sknown\sto\sthe\sfactory/.exec(result.errorMessage)[1];
+                            if (missingRight) {
+                                this.dialogService.confirm(
+                                    this.i18nService.translate('xmcp.xacm.roles.unknown-right-title'),
+                                    this.i18nService.translate('xmcp.xacm.roles.unknown-right-body', { key: '%right%', value: missingRight })
+                                ).afterDismissResult().pipe(filter(answer => answer)).subscribe(answer => {
+                                    // ... create missing right
+                                    const right = XoRight.withName(missingRight);
+                                    this.apiService.createRight(right).subscribe();
+                                });
+                            } else {
+                                // ... else show general error
+                                this.dialogService.error(result.errorMessage, null, result.stackTrace.join('\r\n'));
+                            }
+                            return false;
+                        }
+                        return true;
+                    }),
                     filter(result => result && !result.errorMessage),
                     map(result => result.output[0] as XoRole),
                     catchError(error => {

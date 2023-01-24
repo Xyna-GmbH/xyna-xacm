@@ -15,8 +15,6 @@
  * limitations under the License.
  * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
  */
-import { Injectable } from '@angular/core';
-
 import { ApiService, RuntimeContext, StartOrderOptionsBuilder, StartOrderResult } from '@zeta/api';
 import { Observable, Subject } from 'rxjs';
 
@@ -82,12 +80,4 @@ export function getAllRights(apiService: ApiService, xoLocale: XoACMLocale): Obs
     );
 
     return subject.asObservable();
-}
-
-
-@Injectable()
-export class ACMApiService extends ApiService {
-    defaultStartOrderOptions = new StartOrderOptionsBuilder()
-        .withErrorMessage(true)
-        .options;
 }

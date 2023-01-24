@@ -20,8 +20,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 import { ZetaModule } from '@zeta/zeta.module';
+import { ACMApiService } from './acm-api.service';
 
-import { ACMApiService } from './acm-consts';
 import { ACMNavigationService } from './acm-navigation.service';
 import { ACMSettingsService } from './acm-settings.service';
 import { AcmComponent } from './acm.component';
