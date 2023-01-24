@@ -90,5 +90,13 @@ export const roles_translations_en_US: I18nTranslation[] = [
     {
         key: 'xmcp.xacm.roles.revoke',
         value: 'Revoke'
+    },
+    {
+        key: 'xmcp.xacm.roles.unknown-right-title',
+        value: 'Unknown Right'
+    },
+    {
+        key: 'xmcp.xacm.roles.unknown-right-body',
+        value: 'Linked right "%right%" is not known to the factory. Create right in order to manage this role?'
     }
 ];

@@ -93,6 +93,12 @@ export class XoRight extends ACMTableObject {
         return '';
     }
 
+    static withName(name: string): XoRight {
+        const right = new XoRight();
+        right.rightName = name;
+        return right;
+    }
+
     static getXoRightParameterFromString(para: string, type: RightParameterType): XoRightParameter {
         // - 3 Possibilities
         // 1. options! if it starts with an '[' every option is seperated by ',' and it ends with ']'

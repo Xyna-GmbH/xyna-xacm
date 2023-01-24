@@ -20,8 +20,9 @@ import { Component, Injector } from '@angular/core';
 import { StartOrderOptionsBuilder, StartOrderResult } from '@zeta/api';
 import { I18nService } from '@zeta/i18n';
 import { XcDialogService, XcRichListItem } from '@zeta/xc';
+import { ACMApiService } from '../acm-api.service';
 
-import { ACMApiService, extractError, RTC, XACM_WF } from '../acm-consts';
+import { extractError, RTC, XACM_WF } from '../acm-consts';
 import { ACMRouteComponent } from '../acm-route-component.class';
 import { ACMSettingsService } from '../acm-settings.service';
 import { XoModifyRightRequest } from '../xo/xo-modify-right-request.model';
@@ -65,7 +66,7 @@ export class RightsManagementComponent extends ACMRouteComponent<XoRight> {
 
     beforeInitTableRefresh() {
         this.tableDataSource.output = XoRightArray;
-        this.tableDataSource.input = this.xoLocale;
+        this.tableDataSource.input = this.apiService.xoLocale;
     }
 
     create(refRight?: XoRight) {
@@ -76,15 +77,8 @@ export class RightsManagementComponent extends ACMRouteComponent<XoRight> {
 
         this.dialogService.custom<XoRight, AddNewRightComponentData>(AddNewRightComponent, data).afterDismissResult().subscribe(right => {
             if (right) {
-                this.apiService.startOrder(RTC, XACM_WF.xmcp.xacm.rightsmanagement.CreateRight, [right, this.xoLocale], null, StartOrderOptionsBuilder.defaultOptionsWithErrorMessage).subscribe(
-                    result => {
-                        if (result && !result.errorMessage) {
-                            this.refresh(true);
-                        } else {
-                            this.dialogService.error(result.errorMessage);
-                        }
-                    },
-                    error => this.dialogService.error(extractError(error))
+                this.apiService.createRight(right).subscribe(result =>
+                    this.refresh(true)
                 );
             }
         });
@@ -98,7 +92,7 @@ export class RightsManagementComponent extends ACMRouteComponent<XoRight> {
         const request = new XoModifyRightRequest();
         request.rightName = this.currentObject.rightName;
         request.documentation = this.currentObject.documentation;
-        request.locale = this.xoLocale;
+        request.locale = this.apiService.xoLocale;
 
         this.apiService.startOrder(RTC, XACM_WF.xmcp.xacm.rightsmanagement.ModifyRight, request, null, StartOrderOptionsBuilder.defaultOptionsWithErrorMessage).subscribe(
             (result: StartOrderResult) => {
