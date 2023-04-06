@@ -60,7 +60,7 @@
 
     <ng-container footer>
         <div class="items-left">
-            <xc-button (click)="dismiss(null)" xc-focus-initial xc-i18n>button-cancel</xc-button>
+            <xc-button (click)="dismiss(null)" xc-i18n>button-cancel</xc-button>
         </div>
         <div class="items-right">
             <xc-button *ngIf="!editMode" (click)="applyAndContinue()" [disabled]="!selectedRight || isFormInvalid()" xc-i18n>button-apply-and-add-another-right</xc-button>
