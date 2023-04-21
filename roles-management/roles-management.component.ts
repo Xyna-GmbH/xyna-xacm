@@ -18,7 +18,7 @@
 import { Component, Injector } from '@angular/core';
 
 import { StartOrderOptionsBuilder, StartOrderResult } from '@zeta/api';
-import { I18nService } from '@zeta/i18n';
+import { I18nService, LocaleService } from '@zeta/i18n';
 import { XcDialogService, XcLocalTableDataSource, XDSIconName } from '@zeta/xc';
 
 import { of, throwError } from 'rxjs';
@@ -105,8 +105,8 @@ export class RolesManagementComponent extends ACMRouteComponent<XoRoleTableEntry
             }
         ];
 
-        this.i18nService.setTranslations(I18nService.DE_DE, roles_translations_de_DE);
-        this.i18nService.setTranslations(I18nService.EN_US, roles_translations_en_US);
+        this.i18nService.setTranslations(LocaleService.DE_DE, roles_translations_de_DE);
+        this.i18nService.setTranslations(LocaleService.EN_US, roles_translations_en_US);
     }
 
     protected getTableWorkflow(): string {

@@ -17,7 +17,7 @@
  */
 import { ChangeDetectorRef, Component, Injector } from '@angular/core';
 
-import { I18nService } from '@zeta/i18n';
+import { I18nService, LocaleService } from '@zeta/i18n';
 import { XcDialogComponent, XcLocalTableDataSource, XcRichListItem, XcSelectionModel } from '@zeta/xc';
 
 import { Subject } from 'rxjs';
@@ -62,8 +62,8 @@ export class EditRightComponent extends XcDialogComponent<void, EditRightCompone
     constructor(injector: Injector, private readonly cdr: ChangeDetectorRef, private readonly settings: ACMSettingsService) {
         super(injector);
 
-        this.injectedData.i18n.setTranslations(I18nService.DE_DE, editRight_translations_de_DE);
-        this.injectedData.i18n.setTranslations(I18nService.EN_US, editRight_translations_en_US);
+        this.injectedData.i18n.setTranslations(LocaleService.DE_DE, editRight_translations_de_DE);
+        this.injectedData.i18n.setTranslations(LocaleService.EN_US, editRight_translations_en_US);
 
         this.editMode = !!this.injectedData.right;
 

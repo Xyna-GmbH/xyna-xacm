@@ -17,7 +17,7 @@
  */
 import { Component, Injector, ViewChild } from '@angular/core';
 
-import { I18nService } from '@zeta/i18n';
+import { I18nService, LocaleService } from '@zeta/i18n';
 import { XcAutocompleteDataWrapper, XcDialogComponent, XcFormDirective, XcOptionItem, XcOptionItemString, XcRichListItem } from '@zeta/xc';
 
 import { Observable, Subject, Subscription } from 'rxjs';
@@ -69,8 +69,8 @@ export class AddNewUserComponent extends XcDialogComponent<XoCreateUserRequest, 
     constructor(injector: Injector, private readonly i18n: I18nService) {
         super(injector);
 
-        this.i18n.setTranslations(I18nService.DE_DE, addNewUser_translations_de_DE);
-        this.i18n.setTranslations(I18nService.EN_US, addNewUser_translations_en_US);
+        this.i18n.setTranslations(LocaleService.DE_DE, addNewUser_translations_de_DE);
+        this.i18n.setTranslations(LocaleService.EN_US, addNewUser_translations_en_US);
 
         this.roleDataWrapper = new XcAutocompleteDataWrapper(
             () => this.user.role,

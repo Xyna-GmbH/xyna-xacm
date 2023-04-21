@@ -17,7 +17,7 @@
  */
 import { ChangeDetectorRef, Component, Injector, ViewChild } from '@angular/core';
 
-import { I18nParam, I18nService } from '@zeta/i18n';
+import { I18nParam, I18nService, LocaleService } from '@zeta/i18n';
 import { XcDialogComponent, XcFormDirective, XcRichListItem } from '@zeta/xc';
 
 import { Subject } from 'rxjs';
@@ -72,8 +72,8 @@ export class AddNewRightComponent extends XcDialogComponent<XoRight, AddNewRight
     constructor(injector: Injector, private readonly cdr: ChangeDetectorRef) {
         super(injector);
 
-        this.injectedData.i18nService.setTranslations(I18nService.DE_DE, addNewRight_translations_de_DE);
-        this.injectedData.i18nService.setTranslations(I18nService.EN_US, addNewRight_translations_en_US);
+        this.injectedData.i18nService.setTranslations(LocaleService.DE_DE, addNewRight_translations_de_DE);
+        this.injectedData.i18nService.setTranslations(LocaleService.EN_US, addNewRight_translations_en_US);
 
         this.right = new XoRight();
 

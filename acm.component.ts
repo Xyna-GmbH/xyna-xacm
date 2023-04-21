@@ -17,7 +17,7 @@
  */
 import { Component } from '@angular/core';
 
-import { I18nService } from '@zeta/i18n';
+import { I18nService, LocaleService } from '@zeta/i18n';
 import { RouteComponent } from '@zeta/nav';
 import { XcNavListItem, XcNavListOrientation } from '@zeta/xc';
 
@@ -34,8 +34,8 @@ export class AcmComponent extends RouteComponent {
 
     constructor(private readonly i18nService: I18nService) {
         super();
-        this.i18nService.setTranslations(I18nService.DE_DE, acm_translations_de_DE);
-        this.i18nService.setTranslations(I18nService.EN_US, acm_translations_en_US);
+        this.i18nService.setTranslations(LocaleService.DE_DE, acm_translations_de_DE);
+        this.i18nService.setTranslations(LocaleService.EN_US, acm_translations_en_US);
 
         this.sideListItems = [
             { name: this.i18nService.translate('xmcp.xacm.nav.users'), link: 'users' },

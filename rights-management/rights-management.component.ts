@@ -18,7 +18,7 @@
 import { Component, Injector } from '@angular/core';
 
 import { StartOrderOptionsBuilder, StartOrderResult } from '@zeta/api';
-import { I18nService } from '@zeta/i18n';
+import { I18nService, LocaleService } from '@zeta/i18n';
 import { XcDialogService, XcRichListItem } from '@zeta/xc';
 import { ACMApiService } from '../acm-api.service';
 
@@ -50,8 +50,8 @@ export class RightsManagementComponent extends ACMRouteComponent<XoRight> {
         settings: ACMSettingsService
     ) {
         super(injector, apiService, i18nService, dialogService, settings);
-        this.i18nService.setTranslations(I18nService.DE_DE, rights_translations_de_DE);
-        this.i18nService.setTranslations(I18nService.EN_US, rights_translations_en_US);
+        this.i18nService.setTranslations(LocaleService.DE_DE, rights_translations_de_DE);
+        this.i18nService.setTranslations(LocaleService.EN_US, rights_translations_en_US);
 
         this.currentObjectChange.subscribe(cur => this.syncParameterRichlistItems());
     }
