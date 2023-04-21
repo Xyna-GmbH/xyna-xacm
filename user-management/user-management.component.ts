@@ -19,7 +19,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, Injector, OnDestroy } from '@angular/core';
 
 import { StartOrderOptionsBuilder } from '@zeta/api';
-import { I18nService } from '@zeta/i18n';
+import { I18nService, LocaleService } from '@zeta/i18n';
 import { XcAutocompleteDataWrapper, XcDialogService, XcOptionItem, XcOptionItemString, XcRichListItem } from '@zeta/xc';
 
 import { Observable, of, Subject, Subscription } from 'rxjs';
@@ -83,8 +83,8 @@ export class UserManagementComponent extends ACMRouteComponent<XoUser> implement
             this.syncAuthenticationRichListItems();
         });
 
-        this.i18nService.setTranslations(I18nService.DE_DE, user_translations_de_DE);
-        this.i18nService.setTranslations(I18nService.EN_US, user_translations_en_US);
+        this.i18nService.setTranslations(LocaleService.DE_DE, user_translations_de_DE);
+        this.i18nService.setTranslations(LocaleService.EN_US, user_translations_en_US);
     }
 
     protected getTableWorkflow(): string {

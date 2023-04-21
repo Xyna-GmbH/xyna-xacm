@@ -19,7 +19,7 @@ import { Component, Injector, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 
 import { StartOrderOptionsBuilder } from '@zeta/api';
-import { I18nService } from '@zeta/i18n';
+import { I18nService, LocaleService } from '@zeta/i18n';
 import { RouteComponent } from '@zeta/nav';
 import { XcDialogService, XcFormDirective, XDSIconName } from '@zeta/xc';
 
@@ -77,11 +77,11 @@ export abstract class ACMRouteComponent<T extends ACMTableObject> extends RouteC
     }
 
     get isGerman() {
-        return (this.i18nService.language === I18nService.DE_DE);
+        return (this.i18nService.language === LocaleService.DE_DE);
     }
 
     get isEnglish() {
-        return (this.i18nService.language === I18nService.EN_US);
+        return (this.i18nService.language === LocaleService.EN_US);
     }
 
     constructor(
@@ -92,8 +92,8 @@ export abstract class ACMRouteComponent<T extends ACMTableObject> extends RouteC
         protected readonly settings: ACMSettingsService
     ) {
         super();
-        this.i18nService.setTranslations(I18nService.DE_DE, acm_route_translations_de_DE);
-        this.i18nService.setTranslations(I18nService.EN_US, acm_route_translations_en_US);
+        this.i18nService.setTranslations(LocaleService.DE_DE, acm_route_translations_de_DE);
+        this.i18nService.setTranslations(LocaleService.EN_US, acm_route_translations_en_US);
 
 
         this.router = injector.get(Router);

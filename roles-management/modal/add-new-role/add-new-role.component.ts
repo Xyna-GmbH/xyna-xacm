@@ -17,7 +17,7 @@
  */
 import { Component, Injector, ViewChild } from '@angular/core';
 
-import { I18nService } from '@zeta/i18n';
+import { I18nService, LocaleService } from '@zeta/i18n';
 import { XcDialogComponent, XcFormDirective } from '@zeta/xc';
 
 import { XoRole } from '../../../xo/xo-role.model';
@@ -43,8 +43,8 @@ export class AddNewRoleComponent extends XcDialogComponent<XoRole, XoRole> {
     constructor(injector: Injector, private readonly i18nService: I18nService) {
         super(injector);
 
-        this.i18nService.setTranslations(I18nService.DE_DE, addNewRole_translations_de_DE);
-        this.i18nService.setTranslations(I18nService.EN_US, addNewRole_translations_en_US);
+        this.i18nService.setTranslations(LocaleService.DE_DE, addNewRole_translations_de_DE);
+        this.i18nService.setTranslations(LocaleService.EN_US, addNewRole_translations_en_US);
 
         this.role.domainName0 = 'XYNA';
 
