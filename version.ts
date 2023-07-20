@@ -16,4 +16,4 @@
  * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
  */
 export const AccessControlManagementName = 'Access Control';
-export const AccessControlManagementVersion = '[WIP]';
+export const AccessControlManagementVersion = '1.0.1';
