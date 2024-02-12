@@ -17,8 +17,8 @@
  */
 import { RouterModule, Routes } from '@angular/router';
 
-import { RedirectComponent, RedirectGuardCanActivate, RedirectGuardCanDeactivate } from '@zeta/nav';
-import { RightGuardCanActivate } from '@zeta/nav/right.guard';
+import { RedirectComponent, redirectGuardCanActivate, redirectGuardCanDeactivate } from '@zeta/nav';
+import { rightGuardCanActivate } from '@zeta/nav/right.guard';
 
 import { AcmComponent } from './acm.component';
 import { AcmModule } from './acm.module';
@@ -38,13 +38,13 @@ export const AcmRoutes: Routes = [
     }, {
         path: root,
         component: AcmComponent,
-        canActivate: [RightGuardCanActivate],
+        canActivate: [rightGuardCanActivate],
         data: { right: RIGHT_ACM, reuse: root, title: root },
         children: [
             {
                 path: '',
                 component: RedirectComponent,
-                canActivate: [RedirectGuardCanActivate],
+                canActivate: [redirectGuardCanActivate],
                 data: { reuse: root, redirectKey: root, redirectDefault: 'users' } // important that the RedirectComponent uses the reuse-strategy as well ( => { reuse : uniqueKey })
             },
             {
@@ -55,7 +55,7 @@ export const AcmRoutes: Routes = [
             {
                 path: 'users/:uniqueKey',
                 component: UserManagementComponent,
-                canDeactivate: [RedirectGuardCanDeactivate],
+                canDeactivate: [redirectGuardCanDeactivate],
                 data: { reuse: 'user', redirectKey: root, title: 'Users' }
             },
             {
@@ -66,7 +66,7 @@ export const AcmRoutes: Routes = [
             {
                 path: 'roles/:uniqueKey',
                 component: RolesManagementComponent,
-                canDeactivate: [RedirectGuardCanDeactivate],
+                canDeactivate: [redirectGuardCanDeactivate],
                 data: { reuse: 'roles', redirectKey: root, title: 'Roles' }
             },
             {
@@ -77,7 +77,7 @@ export const AcmRoutes: Routes = [
             {
                 path: 'rights/:uniqueKey',
                 component: RightsManagementComponent,
-                canDeactivate: [RedirectGuardCanDeactivate],
+                canDeactivate: [redirectGuardCanDeactivate],
                 data: { reuse: 'rights', redirectKey: root, title: 'Rights' }
             }
         ]
