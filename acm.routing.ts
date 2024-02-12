@@ -18,7 +18,7 @@
 import { RouterModule, Routes } from '@angular/router';
 
 import { RedirectComponent, RedirectGuardCanActivate, RedirectGuardCanDeactivate } from '@zeta/nav';
-import { RightGuard } from '@zeta/nav/right.guard';
+import { RightGuardCanActivate } from '@zeta/nav/right.guard';
 
 import { AcmComponent } from './acm.component';
 import { AcmModule } from './acm.module';
@@ -38,7 +38,7 @@ export const AcmRoutes: Routes = [
     }, {
         path: root,
         component: AcmComponent,
-        canActivate: [RightGuard],
+        canActivate: [RightGuardCanActivate],
         data: { right: RIGHT_ACM, reuse: root, title: root },
         children: [
             {
