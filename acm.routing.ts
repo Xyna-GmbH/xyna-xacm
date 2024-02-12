@@ -17,7 +17,7 @@
  */
 import { RouterModule, Routes } from '@angular/router';
 
-import { RedirectComponent, RedirectGuard } from '@zeta/nav';
+import { RedirectComponent, RedirectGuardCanActivate, RedirectGuardCanDeactivate } from '@zeta/nav';
 import { RightGuard } from '@zeta/nav/right.guard';
 
 import { AcmComponent } from './acm.component';
@@ -44,7 +44,7 @@ export const AcmRoutes: Routes = [
             {
                 path: '',
                 component: RedirectComponent,
-                canActivate: [RedirectGuard],
+                canActivate: [RedirectGuardCanActivate],
                 data: { reuse: root, redirectKey: root, redirectDefault: 'users' } // important that the RedirectComponent uses the reuse-strategy as well ( => { reuse : uniqueKey })
             },
             {
@@ -55,8 +55,8 @@ export const AcmRoutes: Routes = [
             {
                 path: 'users/:uniqueKey',
                 component: UserManagementComponent,
-                canDeactivate: [RedirectGuard],
-                data: { reuse: 'user', redirectKey: root, title: 'Users'}
+                canDeactivate: [RedirectGuardCanDeactivate],
+                data: { reuse: 'user', redirectKey: root, title: 'Users' }
             },
             {
                 path: 'roles',
@@ -66,8 +66,8 @@ export const AcmRoutes: Routes = [
             {
                 path: 'roles/:uniqueKey',
                 component: RolesManagementComponent,
-                canDeactivate: [RedirectGuard],
-                data: { reuse: 'roles', redirectKey: root, title: 'Roles'}
+                canDeactivate: [RedirectGuardCanDeactivate],
+                data: { reuse: 'roles', redirectKey: root, title: 'Roles' }
             },
             {
                 path: 'rights',
@@ -77,8 +77,8 @@ export const AcmRoutes: Routes = [
             {
                 path: 'rights/:uniqueKey',
                 component: RightsManagementComponent,
-                canDeactivate: [RedirectGuard],
-                data: { reuse: 'rights', redirectKey: root, title: 'Rights'}
+                canDeactivate: [RedirectGuardCanDeactivate],
+                data: { reuse: 'rights', redirectKey: root, title: 'Rights' }
             }
         ]
     }
