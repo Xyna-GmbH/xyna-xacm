@@ -24,7 +24,7 @@
     }
 
     .new-right {
-        ::ng-deep mat-dialog-content.mat-dialog-content {
+        ::ng-deep mat-dialog-content.mat-mdc-dialog-content {
             padding: 0;
 
             [content] {
