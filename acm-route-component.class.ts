@@ -37,7 +37,8 @@ import { XoDomainArray } from './xo/xo-domain.model';
 
 
 @Component({
-    template: ''
+    template: '',
+    standalone: false
 })
 export abstract class ACMRouteComponent<T extends ACMTableObject> extends RouteComponent implements OnInit {
 

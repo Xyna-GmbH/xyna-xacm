@@ -59,7 +59,8 @@ export interface ParameterRichlistItemData {
 
 @Component({
     templateUrl: './parameter-richlist-item.component.html',
-    styleUrls: ['./parameter-richlist-item.component.scss']
+    styleUrls: ['./parameter-richlist-item.component.scss'],
+    standalone: false
 })
 export class ParameterRichlistItemComponent extends XcRichListItemComponent<void, ParameterRichlistItemData> implements OnDestroy {
 
